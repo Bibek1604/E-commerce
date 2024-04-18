@@ -9,5 +9,5 @@ def frontpage(request):
 
 def shop(request):
     products=product.objects.all()
-    return render(request, 'sho.html',{'products':products})
+    return render(request, 'shop.html',{'products':products})
  

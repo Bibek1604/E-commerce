@@ -44,7 +44,10 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'myapp' / 'templates'],  # Adjust this line
+        'DIRS': [
+            BASE_DIR / 'myapp' / 'templates',
+            BASE_DIR / 'product' / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -56,6 +59,7 @@ TEMPLATES = [
         },
     },
 ]
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "myapp/static",

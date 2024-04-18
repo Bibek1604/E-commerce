@@ -19,7 +19,7 @@ def shop(request):
         query=request.Get.get('query',' ')
         
         if query:
-            products=products.filter(Q(name_icontains = query))
+            products=products.filter(Q(name__icontains = query) | Q(description__icontains = query))
     
     context={
         'categories':Categories,

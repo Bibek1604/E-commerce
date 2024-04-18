@@ -1,33 +1,27 @@
 from django.shortcuts import render
-from product.models import product,Category
+from product.models import product, Category  # Capitalize Product and Category
 from django.db.models import Q
+from django.shortcuts import render
 
-# Create your views here.
 def frontpage(request):
-    
-    products=product.objects.all()[0:8]
-    return render (request, 'frontpage.html',{'products':products})
+    return render(request, 'frontpage.html')
 
 def shop(request):
-    Categories = Category.objects.all()
-    products=product.objects.all()
+    categories = Category.objects.all()  # Use lowercase for variable names
+    products = product.objects.all()
     
-    active_category =request.GET.get('category','')
+    active_category = request.GET.get('category', '')
     if active_category:
-        products=products.filter(Category_slug=active_category)
+        products = products.filter(category__slug=active_category)  # Use double underscore for foreign key fields
         
-        query=request.Get.get('query',' ')
-        
-        if query:
-            products=products.filter(Q(name__icontains = query) | Q(description__icontains = query))
+    query = request.GET.get('query', '')  # Fix the typo from Get to GET
+    if query:
+        products = products.filter(Q(name__icontains=query) | Q(description__icontains=query))
     
-    context={
-        'categories':Categories,
-        'products':products,
-        'active_category':active_category,
+    context = {
+        'categories': categories,
+        'products': products,
+        'active_category': active_category,
     }
     
-    
-    
-    return render(request, 'shop.html',{'products':products})
- 
+    return render(request, 'shop.html', context)

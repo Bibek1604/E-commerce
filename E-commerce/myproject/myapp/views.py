@@ -6,3 +6,8 @@ from product.models import product
 def frontpage(request):
     products=product.objects.all()[0:8]
     return render (request, 'frontpage.html',{'products':products})
+
+def shop(request):
+    products=product.objects.all()
+    return render(request, 'sho.html',{'products':products})
+ 

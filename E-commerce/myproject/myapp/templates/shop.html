@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
     <div class="filters w-full lg:w-1/4">
@@ -25,7 +24,7 @@
         </ul>
     </div>
     <div class="Products w-full lg:w-3/4 -mt-4 flex items-center flex-wrap">
-        {% for Product in Products %}
+        {% for product in Products %}
         <div class="w-full md:w-1/2 lg:w-1/4 xl:w-1/4 p-6">
             <!-- Product -->
             <a href='#'></a>
@@ -44,5 +43,4 @@
         </div>
         {% endfor %}
     </div>
-</div>
-{% endblock %}
+    

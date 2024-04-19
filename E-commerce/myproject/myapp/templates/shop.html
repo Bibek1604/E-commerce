@@ -24,12 +24,12 @@
             <li><a href="#" class="text-purple-500">Laptops</a></li>
         </ul>
     </div>
-    <div class="products w-full lg:w-3/4 -mt-4 flex items-center flex-wrap">
-        {% for product in products %}
+    <div class="Products w-full lg:w-3/4 -mt-4 flex items-center flex-wrap">
+        {% for product in products %}  <!-- Corrected variable name to lowercase -->
         <div class="w-full md:w-1/2 lg:w-1/4 xl:w-1/4 p-6">
             <!-- Product -->
             <a href='#'></a>
-            <img class="rounded-xl hover:shadow-lg" src="{{ product.image_url }}"> <!-- Use valid image URLs -->
+            <img class="rounded-xl hover:shadow-lg" src="{{ product.image_url }}"> <!-- Check if image_url is correct -->
             <div class="pt-2 flex items-center justify-between">
                 <a href="#">{{ product.name }}</a>
                 <a href="#" class="text-purple-500 hover:text-purple-1000">
@@ -38,9 +38,10 @@
                     </svg>
                 </a>
             </div>
-            <p class="pt-1 text-gray-700">{{ product.price }}</p> <!-- Use the actual price field -->
+            <p class="pt-1 text-gray-700">{{ product.get_display_price }}</p> <!-- Ensure get_display_price method returns the price -->
         </div>
         {% endfor %}
     </div>
+    
 </div>
 {% endblock %}

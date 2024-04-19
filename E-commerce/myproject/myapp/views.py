@@ -1,17 +1,22 @@
 from django.shortcuts import render
-from product.models import Product, Category  # Corrected Product and Category capitalization
 from django.db.models import Q
+from product.models import Category, Product
+
+def get_categories():
+    return Category.objects.all()
 
 def frontpage(request):
-    return render(request, 'frontpage.html')
+    categories = get_categories()
+    context = {'categories': categories}
+    return render(request, 'frontpage.html', context)
 
 def shop(request):
-    categories = Category.objects.all()
-    products = Product.objects.all()  # Corrected Product capitalization
+    categories = get_categories()
+    products = Product.objects.all()
     
-    active_category = request.GET.get('category', '')
-    if active_category:
-        products = products.filter(category__slug=active_category)
+    active_category_slug = request.GET.get('category', '')
+    if active_category_slug:
+        products = products.filter(category__slug=active_category_slug)
         
     query = request.GET.get('query', '')
     if query:
@@ -20,7 +25,7 @@ def shop(request):
     context = {
         'categories': categories,
         'products': products,
-        'active_category': active_category,
+        'active_category_slug': active_category_slug,
     }
     
     return render(request, 'shop.html', context)

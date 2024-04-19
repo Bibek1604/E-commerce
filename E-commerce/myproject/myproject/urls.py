@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render
+from myapp.views import frontpage, shop
 
 from myapp.views import frontpage, shop
 from product.views import product_view  # Corrected import

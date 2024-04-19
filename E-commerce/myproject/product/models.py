@@ -1,8 +1,7 @@
-from django.shortcuts import render
+from django.contrib import admin
 from django.db import models
-from django.db.models import Q
+from myapp.models import Category, Product
 
-from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -29,4 +28,7 @@ class Product(models.Model):
         return self.name
 
     def get_display_price(self):
-        return self.price / 100
+        return self.price  # Adjusted to return the actual price without division
+
+def get_display_price(self):
+    return self.price/100

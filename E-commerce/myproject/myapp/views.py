@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.db.models import Q
 from product.models import Category, Product
+from django.http import HttpResponse
+
 
 def get_categories():
     return Category.objects.all()
@@ -8,7 +10,7 @@ def get_categories():
 def frontpage(request):
     categories = get_categories()
     context = {'categories': categories}
-    return render(request, 'frontpage.html', context)
+    return HttpResponse(request, 'frontpage.html', context)
 
 def shop(request):
     categories = get_categories()
@@ -28,4 +30,4 @@ def shop(request):
         'active_category_slug': active_category_slug,
     }
     
-    return render(request, 'shop.html', context)
+    return HttpResponse(request, 'shop.html', context)

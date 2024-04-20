@@ -1,13 +1,32 @@
 from django.shortcuts import render
-from product.models import product
+from django.db.models import Q
+from product.models import Category, Product
+from django.http import HttpResponse
 
+def get_categories():
+    return Category.objects.all()
 
-# Create your views here.
 def frontpage(request):
-    products=product.objects.all()[0:8]
-    return render (request, 'frontpage.html',{'products':products})
+    categories = get_categories()
+    context = {'categories': categories}
+    return render(request, 'frontpage.html', context) 
 
-def shop(request):
-    products=product.objects.all()
-    return render(request, 'sho.html',{'products':products})
- 
+def shop(request, slug=None):  # Making slug parameter optional with a default value of None
+    categories = get_categories()
+    products = Product.objects.all()
+    
+    active_category_slug = request.GET.get('category', '')
+    if active_category_slug:
+        products = products.filter(category__slug=active_category_slug)
+        
+    query = request.GET.get('query', '')
+    if query:
+        products = products.filter(Q(name__icontains=query) | Q(description__icontains=query))
+    
+    context = {
+        'categories': categories,
+        'products': products,
+        'active_category_slug': active_category_slug,
+    }
+    
+    return render(request, 'shop.html', context)

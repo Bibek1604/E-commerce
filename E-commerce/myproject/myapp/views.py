@@ -3,9 +3,6 @@ from django.db.models import Q
 from product.models import Category, Product
 from django.http import HttpResponse
 
-
-
-
 def get_categories():
     return Category.objects.all()
 
@@ -14,7 +11,7 @@ def frontpage(request):
     context = {'categories': categories}
     return render(request, 'frontpage.html', context) 
 
-def shop(request):
+def shop(request, slug=None):  # Making slug parameter optional with a default value of None
     categories = get_categories()
     products = Product.objects.all()
     
@@ -32,4 +29,4 @@ def shop(request):
         'active_category_slug': active_category_slug,
     }
     
-    return HttpResponse(request, 'shop.html', context)
+    return render(request, 'shop.html', context)

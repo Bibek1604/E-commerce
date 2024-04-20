@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import frontpage, shop  # Corrected import
+from myapp.views import frontpage, shop  # Corrected import
 
 urlpatterns = [
     path('', frontpage, name='frontpage'),

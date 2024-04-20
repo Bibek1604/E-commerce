@@ -23,6 +23,7 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
-
-    def get_display_price(self):
-        return self.price / 100
+    
+def get_display_price(self):
+    print(type(self.price))  # Add this line to check the type
+    return self.price / 100

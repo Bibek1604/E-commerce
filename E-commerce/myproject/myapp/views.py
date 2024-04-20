@@ -4,13 +4,15 @@ from product.models import Category, Product
 from django.http import HttpResponse
 
 
+
+
 def get_categories():
     return Category.objects.all()
 
 def frontpage(request):
     categories = get_categories()
     context = {'categories': categories}
-    return HttpResponse(request, 'frontpage.html', context)
+    return render(request, 'frontpage.html', context) 
 
 def shop(request):
     categories = get_categories()

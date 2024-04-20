@@ -1,10 +1,10 @@
-from django.contrib import admin
 from django.urls import path
-from myapp.views import frontpage, shop, product_view
-
+from myapp.views import frontpage, shop  
+from django.contrib import admin# Corrected import
+from product.views import product
 urlpatterns = [
+    path('admin/',admin.site.urls),
     path('', frontpage, name='frontpage'),
-    path('shop/', shop, name='shop'),
-    path('shop/<slug:slug>/', product_view, name='product'),  # Assuming 'product_view' is your view function for the product page
-    path('admin/', admin.site.urls),
+    path('shop/', shop, name='shop'),  
+    path('product/', product, name='product'),  
 ]

@@ -11,11 +11,11 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category,related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     slug = models.SlugField()
     description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)  # Assuming price is a decimal value
+    price = models.IntegerField()  # Assuming price is a decimal value
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

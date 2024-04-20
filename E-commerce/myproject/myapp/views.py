@@ -1,17 +1,16 @@
 from django.shortcuts import render
 from django.db.models import Q
-from product.models import Category, Product
-from django.http import HttpResponse
+from product.models import Category, Product  # Corrected import
 
 def get_categories():
     return Category.objects.all()
 
 def frontpage(request):
-    categories = get_categories()
-    context = {'categories': categories}
-    return render(request, 'frontpage.html', context) 
+    products =Product.objects.all()[0:8]
+    # context = {'categories': categories}
+    return render(request, 'frontpage.html', {'products':products})
 
-def shop(request, slug=None):  # Making slug parameter optional with a default value of None
+def shop(request, slug=None):  # Updated function signature
     categories = get_categories()
     products = Product.objects.all()
     
@@ -30,3 +29,8 @@ def shop(request, slug=None):  # Making slug parameter optional with a default v
     }
     
     return render(request, 'shop.html', context)
+
+def product_view(request, slug):
+    product = Product.objects.get(slug=slug)
+    context = {'product': product}
+    return render(request, 'product.html', context)

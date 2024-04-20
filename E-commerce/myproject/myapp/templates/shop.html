@@ -16,7 +16,6 @@
         </form>
         <h3 class="mt-6 mb-3 text-xl uppercase">Categories</h3>
         <ul class="space-y-2">
-            <li><a href="{% url 'shop' %}" class="text-purple-500">All Categories</a></li>
             {% for category in categories %}
             <li><a href="{% url 'shop' %}?category={{ category.slug }}" class="text-purple-500">{{ category.name }}</a></li>
             {% endfor %}
@@ -25,11 +24,9 @@
         </ul>
     </div>
     <div class="Products w-full lg:w-3/4 -mt-4 flex items-center flex-wrap">
-        {% for product in Products %}
-        
+        {% for product in products %} <!-- Changed 'Products' to 'products' -->
            {% include "partials/product_list_item.html" %}
         {% endfor %}
     </div>
 </div>
 {% endblock %}
-    

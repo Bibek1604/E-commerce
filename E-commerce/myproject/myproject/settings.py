@@ -35,6 +35,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'myproject.urls'
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -49,12 +53,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'cart.context_processor.cart'
+                'cart.context_processors.cart',  # corrected typo here
             ],
         },
     },
 ]
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [

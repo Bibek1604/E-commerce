@@ -70,3 +70,6 @@ def shop(request):
     }
 
     return render(request, 'shop.html', context)
+
+def hx_menu_cart(request):
+    return render(request,'menu_cart.html')

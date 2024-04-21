@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login
 
 from product.models import Product, Category
+from cart.views import login_required
 
 from .forms import SignUpForm
 def frontpage(request):
@@ -25,6 +26,28 @@ def signup(request):
 
 def login_old(request):
     return render(request, 'login.html')
+
+@login_required
+def edit_myaccount(request):
+    return render(request, 'edit_myaccount.html')
+
+@login_required
+def myaccount(request):
+    if request.method == "POST":
+  
+        
+        user=request.user
+        user.first_name = request.POST.get('first_name')
+        user.last_name=request.POST.get('last_name')
+        user.username = request.POST.get('username')
+        user.email = request.POST.get('email')
+        user.save()
+        
+        return redirect('myaccount')
+        
+    return render(request, 'myaccount.html')
+    
+
 
 def shop(request):
     categories = Category.objects.all()

@@ -60,6 +60,12 @@ TEMPLATES = [
 ]
 STATIC_URL = '/static/'
 
+
+LOGOUT_REDIRECT_URL= '/'
+LOGIN_REDIRECT_URL= '/'
+
+
+
 STATICFILES_DIRS = [
     BASE_DIR / "myapp/static",
 ]
@@ -73,9 +79,10 @@ MEDIA_ROOT = BASE_DIR/'media'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # This will create a database file named 'db.sqlite3' in your project directory
     }
 }
+
 
 # Password validation, internationalization, time zone settings, etc.
 # (These settings are fine as they are)

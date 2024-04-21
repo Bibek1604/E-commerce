@@ -1,7 +1,9 @@
 from django.db import models
-from PIL import Image
-from io import BytesIO
 from django.core.files import File
+
+from io import BytesIO
+from PIL import Image
+
 class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
@@ -19,17 +21,16 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True)
     price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='products/')
-    thumbnail = models.ImageField(upload_to='uploads/', blank=False, null=False)
-    
+    image = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
+
     class Meta:
         ordering = ('-created_at',)
     
     def __str__(self):
         return self.name
-    
+
     def get_display_price(self):
-        print(type(self.price))  # Add this line to check the type
         return self.price / 100
     
     def get_thumbnail(self):
@@ -39,15 +40,19 @@ class Product(models.Model):
             if self.image:
                 self.thumbnail = self.make_thumbnail(self.image)
                 self.save()
+
                 return self.thumbnail.url
             else:
                 return 'https://via.placeholder.com/240x240x.jpg'
-        
-    def make_thumbnail(self, image, size=(300,300)):
+    
+    def make_thumbnail(self, image, size=(300, 300)):
         img = Image.open(image)
-        img = img.convert('RGB')
+        img.convert('RGB')
         img.thumbnail(size)
+
         thumb_io = BytesIO()
         img.save(thumb_io, 'JPEG', quality=85)
+
         thumbnail = File(thumb_io, name=image.name)
+
         return thumbnail

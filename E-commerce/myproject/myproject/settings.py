@@ -65,6 +65,9 @@ STATICFILES_DIRS = [
 ]
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
+MEDIA_URL="/media/"
+MEDIA_ROOT = BASE_DIR/'media'
+
 
 # Database
 DATABASES = {

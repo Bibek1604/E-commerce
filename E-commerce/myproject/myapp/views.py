@@ -1,12 +1,19 @@
 from django.db.models import Q
 from django.shortcuts import render
-
 from product.models import Product, Category
 
 def frontpage(request):
     products = Product.objects.all()[0:8]
-
     return render(request, 'frontpage.html', {'products': products})
+
+
+def signup(request):
+    return render(request, 'signup.html')
+
+
+def login(request):
+    return render(request, 'login.html')
+
 
 def shop(request):
     categories = Category.objects.all()

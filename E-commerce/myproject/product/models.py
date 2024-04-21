@@ -1,7 +1,4 @@
-from django.contrib import admin
 from django.db import models
-from myapp.models import Category, Product
-
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -9,7 +6,7 @@ class Category(models.Model):
 
     class Meta:
         ordering = ('name',)
-
+    
     def __str__(self):
         return self.name
 
@@ -18,17 +15,14 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
     description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)  # Assuming price is a decimal value
+    price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ('-created_at',)
-
+    
     def __str__(self):
         return self.name
 
     def get_display_price(self):
-        return self.price  # Adjusted to return the actual price without division
-
-def get_display_price(self):
-    return self.price/100
+        return self.price / 100

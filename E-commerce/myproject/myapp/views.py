@@ -73,3 +73,7 @@ def shop(request):
 
 def hx_menu_cart(request):
     return render(request,'menu_cart.html')
+
+
+def hx_cart_total(request):
+    return render(request,'partials/cart_total.html')

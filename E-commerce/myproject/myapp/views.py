@@ -11,7 +11,7 @@ from .forms import SignUpForm
 def frontpage(request):
     products = Product.objects.all()[0:8]
 
-    return render(request, 'core/frontpage.html', {'products': products})
+    return render(request, 'frontpage.html', {'products': products})
 
 def signup(request):
     if request.method == 'POST':
@@ -26,11 +26,11 @@ def signup(request):
     else:
         form = SignUpForm()
 
-    return render(request, 'core/signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
 
 @login_required
 def myaccount(request):
-    return render(request, 'core/myaccount.html')
+    return render(request, 'myaccount.html')
 
 @login_required
 def edit_myaccount(request):
@@ -43,7 +43,7 @@ def edit_myaccount(request):
         user.save()
 
         return redirect('myaccount')
-    return render(request, 'core/edit_myaccount.html')
+    return render(request, 'edit_myaccount.html')
 
 def shop(request):
     categories = Category.objects.all()
@@ -65,4 +65,4 @@ def shop(request):
         'active_category': active_category
     }
 
-    return render(request, 'core/shop.html', context)
+    return render(request, 'shop.html', context)

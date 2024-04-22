@@ -81,7 +81,8 @@
 {% block scripts %}
 <script type="application/javascript" src="https://js.stripe.com/v3/"></script>
 <script>
-    let el = document.querySelector('errors')
+    let el = document.querySelector('#errors')
+
     function validateForm(data) {
         let errors = []
 
@@ -112,16 +113,18 @@
         if (data.place === '') {
             errors.push('Place is empty')
         }
-        if(errors.length > 0){
-            let html = '<ul>'; // Start building an unordered list
-            errors.forEach(error => {
-                html += `<li>${error}</li>`; // Add each error as a list item
-            });
-            el.innerHTML = html + '</ul>'; // Set the inner HTML of the element to the constructed list
-        }else{  
-            el.innerHTML = ''; // If there are no errors, clear the inner HTML of the element
+
+        if (errors.length > 0) {
+            let html = '<ul>';
+            
+            errors.forEach((error) => {
+                html += '<li>' + error + '</li>';
+            })
+
+            el.innerHTML = html + '</ul>';
+        } else {
+            el.innerHTML = '';
         }
-        
 
         return errors
     }

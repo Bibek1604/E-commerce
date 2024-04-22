@@ -46,4 +46,4 @@ class OrderItem(models.Model):
     
     
     def get_total_price(self):
-        return(self.quantity * self.price) / 100
+        return self.price / 100

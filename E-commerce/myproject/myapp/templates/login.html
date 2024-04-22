@@ -27,12 +27,13 @@
             {% endif %}
 
 
-            {% fro error in form.non_field_errors %}
-            <div class="p-6 bg-red-200 text-red-800 rounded-xl">
-                <p>{{ error|escape }}</p>
-            </div>
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}         
+                <div class="p-6 bg-red-200 text-red-800 rounded-xl">
+                    <p>{{ error|escape }}</p>
+                </div>
             {% endfor %}
-            {% endif %}
+        {% endif %}
 
             <div>
                 <button class="py-4 px-6 rounded-xl text-white bg-purple-500 hover:bg-purple-700">Submit</button>

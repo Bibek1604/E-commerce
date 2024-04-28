@@ -7,6 +7,7 @@ from PIL import Image
 class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
+    
 
     class Meta:
         ordering = ('name',)

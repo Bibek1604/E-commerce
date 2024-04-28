@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <nav class="border-b border-gray-300">
+        <nav class="bg-[#1A1D2B]">
             <div class="max-w-6xl mx-auto py-2 px-6 xl:px-0 flex items-center justify-between">
                 <div class="menu-left flex items-center space-x-6">
                     <a href="{% url 'frontpage' %}" class="py-4 text-lg text-purple-500 font-semibold"> AppleaDay</a>
@@ -202,5 +202,22 @@
         <script src="https://unpkg.com/htmx.org@1.7.0"></script>
         {% block scripts %}
         {% endblock %}
+
+        <script>
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', function() {
+        // Remove active class from all items
+        document.querySelectorAll('.nav-item').forEach(innerItem => {
+            innerItem.classList.remove('active');
+        });
+
+        // Add active class to clicked item
+        this.classList.add('active');
+        <div class="nav-item active bg-[#1A1D2B] text-white">
+
+    });
+});
+</script>
+
     </body>
 </html>

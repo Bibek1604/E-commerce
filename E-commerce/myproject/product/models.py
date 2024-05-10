@@ -1,13 +1,11 @@
 from django.db import models
 from django.core.files import File
-
 from io import BytesIO
 from PIL import Image
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
-    
 
     class Meta:
         ordering = ('name',)
@@ -16,7 +14,6 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     slug = models.SlugField()
     description = models.TextField(blank=True, null=True)
@@ -24,6 +21,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
 
     class Meta:
         ordering = ('-created_at',)

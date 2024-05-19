@@ -1,7 +1,9 @@
-from django.db import models
-from django.core.files import File
 from io import BytesIO
+
+from django.core.files import File
+from django.db import models
 from PIL import Image
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -21,7 +23,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')  # Correct field name
 
     class Meta:
         ordering = ('-created_at',)

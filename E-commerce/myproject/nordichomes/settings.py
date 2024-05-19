@@ -90,10 +90,10 @@ WSGI_APPLICATION = 'nordichomes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Project',
+        'NAME': 'used_com',
         'USER': 'root',  # Remove @localhost
-        'PASSWORD': 'admin@Bibek',
-        'HOST': '127.0.0.1',
+        'PASSWORD': 'adminBibek',
+        'HOST': "127.0.0.1",
         'PORT': '3306',
     }
 }
